@@ -11,12 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
     - name: Generate Docs
-      run: |
-        mkdir docs
-        echo "<h1>Hello, docs</h1>" > docs/index.html
+      run: mkdir docs; echo "<h1>Hello, docs!</h1>" > docs/index.html
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v3
       with:
