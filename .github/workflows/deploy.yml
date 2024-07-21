@@ -6,33 +6,27 @@ on:
 
   workflow_dispatch:
 
-env:
-  # renovate: datasource=crate depName=mdbook versioning=semver
-  MDBOOK_VERSION: 0.4.40
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    - name: Generate Book
+    - name: Generate Docs
       run: |
-        mkdir book
-        echo "<h1>Hello, world</h1>" > book/index.html
+        mkdir docs
+        echo "<h1>Hello, docs</h1>" > docs/index.html
     - name: Upload Artifact
-      uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
+      uses: actions/upload-pages-artifact@v3
       with:
-        path: ./book
+        path: ./docs
 
   deploy:
     needs: build
-
     permissions:
       pages: write
       id-token: write
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
