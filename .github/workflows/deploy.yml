@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-
   workflow_dispatch:
 
 jobs:
@@ -11,8 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        repository: FnControlOption/unicode-properties-zig
     - name: Generate Docs
-      run: mkdir docs; echo "<h1>Hello, docs!</h1>" > docs/index.html
+      run: zig build-lib -femit-docs unicode_properties.zig
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v3
       with:
