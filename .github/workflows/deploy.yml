@@ -11,10 +11,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        repository: FnControlOption/unicode-properties-zig
+        repository: FnControlOption/rustc_lexer_zig
     - uses: goto-bus-stop/setup-zig@v2
     - name: Generate Docs
-      run: zig build-lib -femit-docs unicode_properties.zig
+      run: zig build-lib -femit-docs rustc_lexer.zig
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v3
       with:
